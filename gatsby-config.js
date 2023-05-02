@@ -10,13 +10,13 @@ module.exports = {
     resolve: `gatsby-source-contentstack`,
     options: {
       // Required: API Key is a unique key assigned to each stack.
-      api_key: `blt9fe7ff0979b8c046`,
+      api_key: `blte646c896ce636cf1`,
 
       // Required: Delivery Token is a read-only credential. 
-      delivery_token: `cs56bf5d5b80f2cea1afb65edd`,
+      delivery_token: `cs8153aa227a4a2ea442f51789`,
       
       // Required: Environment where you published your data.
-      environment: `development`,
+      environment: `main_test_environment`,
     },
   },]
 };
