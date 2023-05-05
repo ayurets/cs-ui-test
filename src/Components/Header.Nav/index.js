@@ -14,6 +14,9 @@ const HeaderNav = () => {
       contentstackHeader {
         navigation_menu {
           label
+          page_reference {
+            url
+          }
         }
       }
     }
@@ -22,9 +25,9 @@ const HeaderNav = () => {
   return (
     <nav>
       <List>
-        {data.contentstackHeader.navigation_menu.map(({ label }, idx) => (
-          <HeaderNavItem key={`${label}-${idx}`} label={label} />
-        ))}
+        {data.contentstackHeader.navigation_menu.map(({label, page_reference}, idx) => {
+          return <HeaderNavItem key={`${label}-${idx}`} label={label} url={page_reference[0].url} />
+})}
       </List>
     </nav>
   );

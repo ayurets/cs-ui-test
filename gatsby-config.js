@@ -10,7 +10,9 @@ module.exports = {
     title: `Playground`,
     siteUrl: `https://www.yourdomain.tld`
   },
-  plugins: ["gatsby-plugin-styled-components", {
+  plugins: ["gatsby-plugin-styled-components",  "gatsby-plugin-image",
+  "gatsby-plugin-sharp",
+  "gatsby-transformer-sharp", {
     resolve: `gatsby-source-contentstack`,
     options: {
       api_key: process.env.CONTENTSTACK_API_KEY,

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const Main = styled.main`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 80vh;
   color: '#232129';

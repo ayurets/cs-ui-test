@@ -10,9 +10,9 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const HeaderNavItem = ({ label = '', linkUrl = '/about-us' }) => (
+const HeaderNavItem = ({ label = '', url = '/about-us' }) => (
   <Item>
-    <StyledLink to={linkUrl}>
+    <StyledLink to={`/page${url}`}>
       <span>{label}</span>
     </StyledLink>
   </Item>
