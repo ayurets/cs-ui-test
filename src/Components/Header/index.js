@@ -41,7 +41,6 @@ const Header = () => {
       <StyledLink to='/'>
         <img src={staticData.contentstackHeader.logo.url} alt='logo'></img>
       </StyledLink>
-      <h2>Header</h2>
       {clientSideData}
       <HeaderNav />
     </StyledHeader>
