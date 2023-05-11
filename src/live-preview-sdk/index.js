@@ -18,6 +18,7 @@ const Stack = contentstack.Stack({
     },
   })
   
+  console.log(process.env.CONTENTSTACK_LIVE_PREVIEW)
   
   ContentstackLivePreview.init({
     enable: process.env.CONTENTSTACK_LIVE_PREVIEW === "true",
