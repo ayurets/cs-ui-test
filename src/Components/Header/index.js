@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import HeaderNav from '../Header.Nav';
 import styled from 'styled-components';
+import { onEntryChange } from '../../live-preview-sdk';
+import { getHeaderRes } from '../../helper';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -26,22 +28,20 @@ const Header = () => {
     }
   `);
 
-  const [clientSideData, setClientSideData] = useState(null);
+  const  getHeaderData = async () => {
+    const headerData = await getHeaderRes();
+    console.log(headerData)
+  }
+
   useEffect(() => {
-    fetch('https://1s2s3s4test.com')
-      .then((response) => response.json())
-      .then((resultData) => {
-        setClientSideData(resultData);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  onEntryChange(() => getHeaderData())
+  }, [onEntryChange]);
 
   return (
     <StyledHeader>
       <StyledLink to='/'>
         <img src={staticData.contentstackHeader.logo.url} alt='logo'></img>
       </StyledLink>
-      {clientSideData}
       <HeaderNav />
     </StyledHeader>
   );
