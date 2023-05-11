@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import HeaderNavItem from '../Header.Nav.Item';
 import styled from 'styled-components';
+import { onEntryChange } from '../../live-preview-sdk';
+import { getHeaderRes } from '../../helper';
 
 const List = styled.ul`
   display: flex;
@@ -22,10 +24,22 @@ const HeaderNav = () => {
     }
   `);
 
+const [headerData, setHeaderData] = useState(data)
+const  getHeaderData = async () => {
+  const headerData = await getHeaderRes();
+  setHeaderData(headerData)
+}
+
+
+React.useEffect(() => {
+    onEntryChange(getHeaderData, {skipInitialRender: true});
+}, []);
+
+
   return (
     <nav>
       <List>
-        {data.contentstackHeader.navigation_menu.map(({label, page_reference}, idx) => {
+        {headerData.contentstackHeader.navigation_menu.map(({label, page_reference}, idx) => {
           return <HeaderNavItem key={`${label}-${idx}`} label={label} url={page_reference[0].url} />
 })}
       </List>
