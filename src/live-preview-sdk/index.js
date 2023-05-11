@@ -8,7 +8,7 @@ const Stack = contentstack.Stack({
     environment: `${process.env.CONTENTSTACK_ENVIRONMENT}`,
     live_preview: {
       management_token: `${process.env.CONTENTSTACK_MANAGEMENT_TOKEN}`,
-      enable: true,
+      enable: process.env.CONTENTSTACK_LIVE_PREVIEW === "true",
       host: `${process.env.CONTENTSTACK_API_HOST}`,
     },
     //@ts-ignore
@@ -32,14 +32,7 @@ const Stack = contentstack.Stack({
 
   export default {
     getEntry({contentTypeUid}) {
-        const query = Stack.ContentType(contentTypeUid).Query()
+        const query = Stack.ContentType(contentTypeUid).Entry('bltfe7db99d54b0c956')
         return query
-        .toJSON()
-        .find()
-        .then(
-          result => {
-           return result[0][0]
-          },
-        )
     },
   }

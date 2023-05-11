@@ -33,9 +33,10 @@ const Header = () => {
     console.log(headerData)
   }
 
-  useEffect(() => {
-  onEntryChange(() => getHeaderData())
-  }, [onEntryChange]);
+
+  React.useEffect(() => {
+      onEntryChange(getHeaderData, {skipInitialRender: true});
+  }, []);
 
   return (
     <StyledHeader>
