@@ -25,7 +25,8 @@ const HeaderNav = () => {
   `);
 
 const [headerData, setHeaderData] = useState(data)
-const  getHeaderData = async () => {
+
+const getHeaderData = async () => {
   const headerData = await getHeaderRes();
   setHeaderData(headerData)
 }

@@ -32,7 +32,6 @@ const Stack = contentstack.Stack({
 
   export default {
     getEntry({contentTypeUid}) {
-        const query = Stack.ContentType(contentTypeUid).Entry('bltfe7db99d54b0c956')
-        return query
+        return Stack.ContentType(contentTypeUid).Entry('bltfe7db99d54b0c956')
     },
   }
