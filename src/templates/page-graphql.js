@@ -26,7 +26,7 @@ const PageTemplate = ({ data: { contentstackPage } }) => {
   return (
     <Layout>
       {!hero_banner ? null : (
-        <PageContent contentstackPage={contentstackPage}/>
+        <PageContent contentstackPage={contentstackPage} />
       )}
     </Layout>
   );
