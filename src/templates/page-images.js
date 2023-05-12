@@ -1,36 +1,53 @@
 import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import Layout from '../Components/Layout';
-import PageContent from '../Components/Section';
+import styled from 'styled-components';
 
-const PageTemplate = ({ pageContext }) => {
-  const data = useStaticQuery(graphql`
-    query MyQuery {
-      allSitePage {
-        edges {
-          node {
-            path
-          }
+const MediaSection = styled.section`
+  width: 50vh;
+  height: 100%;
+  display: flex;
+`;
+const Main = styled.main`
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  padding: 0 20px;
+`;
+
+const InfoSection = styled.section`
+  width: 50vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const query = graphql`
+  query ($path: String) {
+    allSitePage(filter: { path: { eq: $path } }) {
+      edges {
+        node {
+          path
         }
       }
     }
-  `);
-  //   const hero_banner = contentstackPage?.page_components[0]?.hero_banner;
+  }
+`;
 
+const PageTemplate = ({ data, pageContext }) => {
+  const pathUrl = data.allSitePage?.edges[0].node.path;
+  const productData = pageContext.product;
   return (
     <Layout>
-      <img src={pageContext?.url}></img>
-
-      <ul style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', height: '500px', width: '500px', overflow: 'auto', padding: '50px'}}>
-        {data.allSitePage.edges.map(elem => {
-            return (
-                <li><Link to={elem.node.path}>{elem.node.path}</Link></li>
-            )
-        })}
-      </ul>
-      {/* {!hero_banner ? null : (
-        <PageContent contentstackPage={contentstackPage}/>
-      )} */}
+      <Main>
+        <MediaSection>
+          <img src={productData?.url}></img>
+        </MediaSection>
+        <InfoSection>
+          <h1>{pathUrl}</h1>
+          <h3>{productData.title}</h3>
+        </InfoSection>
+      </Main>
     </Layout>
   );
 };

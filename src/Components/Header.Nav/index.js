@@ -5,11 +5,6 @@ import styled from 'styled-components';
 import { onEntryChange } from '../../live-preview-sdk';
 import { getHeaderRes } from '../../helper';
 
-const List = styled.ul`
-  display: flex;
-  gap: 20px;
-`;
-
 const HeaderNav = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -24,26 +19,36 @@ const HeaderNav = () => {
     }
   `);
 
-const [headerData, setHeaderData] = useState(data)
+  const [headerData, setHeaderData] = useState(data);
+  const getHeaderData = async () => {
+    const headerData = await getHeaderRes();
+    setHeaderData(headerData);
+  };
 
-const getHeaderData = async () => {
-  const headerData = await getHeaderRes();
-  setHeaderData(headerData)
-}
-
-
-React.useEffect(() => {
-    onEntryChange(getHeaderData, {skipInitialRender: true});
-}, []);
-
+  React.useEffect(() => {
+    onEntryChange(getHeaderData, { skipInitialRender: true });
+  }, []);
 
   return (
     <nav>
-      <List>
-        {headerData.contentstackHeader.navigation_menu.map(({label, page_reference}, idx) => {
-          return <HeaderNavItem key={`${label}-${idx}`} label={label} url={page_reference[0].url} />
-})}
-      </List>
+      <ul>
+        {headerData.contentstackHeader.navigation_menu.map(
+          ({ label, page_reference }, idx) => {
+            return (
+              <HeaderNavItem
+                key={`${label}-${idx}`}
+                label={label}
+                url={page_reference[0].url}
+              />
+            );
+          }
+        )}
+        <HeaderNavItem
+          key={`category-page`}
+          label={`Category`}
+          url={`/category`}
+        />
+      </ul>
     </nav>
   );
 };
