@@ -3,20 +3,23 @@ import Header from '../Header';
 import Footer from '../Footer';
 import styled from 'styled-components';
 import '../../styles/style.css';
+import "@contentstack/live-preview-utils/dist/main.css";
 
-
-const Main = styled.main`
+const MainContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  color: '#232129';
+  gap: 20px;
+  padding: 20px;
+  color: '#707070';
+
 `;
 
 const Layout = ({ children, pageContext }) => {
   return (
     <>
       <Header pageContext={pageContext}/>
-      <Main>{children}</Main>
+      <MainContainer>{children}</MainContainer>
       <Footer />
     </>
   );

@@ -4,6 +4,10 @@ import styled from 'styled-components';
 
 const Item = styled.li`
   list-style: none;
+  a {
+    color: white;
+  }
+
 `;
 
 const StyledLink = styled(Link)`
