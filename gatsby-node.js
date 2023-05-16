@@ -35,7 +35,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
     path: `/page/category`,
     component: require.resolve('./src/templates/page-category.js'),
     context: {
-      products: res.slice(0, 500),
+      products: dummyData.slice(0, 500),
     },
   });
 
