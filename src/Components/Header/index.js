@@ -9,7 +9,11 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 5vh;
   padding: 0 40px;
+  background-color: #0073a6;
+  border-radius: 15px;
+  margin: 20px 20px 0 20px;
 `;
 
 const StyledLink = styled(Link)`
@@ -30,7 +34,6 @@ const Header = () => {
 
   const  getHeaderData = async () => {
     const headerData = await getHeaderRes();
-    console.log(headerData)
   }
 
 
@@ -41,7 +44,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <StyledLink to='/'>
-        <img src={staticData.contentstackHeader.logo.url} alt='logo'></img>
+        <img src={staticData.contentstackHeader.logo.url} height={40} width={40} alt='logo'></img>
       </StyledLink>
       <HeaderNav />
     </StyledHeader>

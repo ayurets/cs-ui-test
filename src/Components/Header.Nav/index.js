@@ -5,6 +5,12 @@ import styled from 'styled-components';
 import { onEntryChange } from '../../live-preview-sdk';
 import { getHeaderRes } from '../../helper';
 
+const NavLink = styled.ul`
+display: flex;
+flex-direction: row;
+gap: 20px;
+`
+
 const HeaderNav = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -31,7 +37,7 @@ const HeaderNav = () => {
 
   return (
     <nav>
-      <ul>
+      <NavLink>
         {headerData.contentstackHeader.navigation_menu.map(
           ({ label, page_reference }, idx) => {
             return (
@@ -48,7 +54,7 @@ const HeaderNav = () => {
           label={`Category`}
           url={`/category`}
         />
-      </ul>
+      </NavLink>
     </nav>
   );
 };
