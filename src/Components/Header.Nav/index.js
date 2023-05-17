@@ -32,7 +32,7 @@ const HeaderNav = () => {
   };
 
   React.useEffect(() => {
-    onEntryChange(getHeaderData, { skipInitialRender: true });
+    onEntryChange(getHeaderData);
   }, []);
 
   return (

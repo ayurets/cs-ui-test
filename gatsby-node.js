@@ -12,7 +12,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
     }
   `);
 
-  const res = await fetch('https://jsonplaceholder.typicode.com/photos').then(
+  const dummyData = await fetch('https://jsonplaceholder.typicode.com/photos').then(
     (res) => res.json()
   );
 
@@ -21,7 +21,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
     return;
   }
 
-  res.forEach((elem, idx) => {
+  dummyData.forEach((elem, idx) => {
     createPage({
       path: `/page/image/${elem.url}`,
       component: require.resolve('./src/templates/page-images.js'),
@@ -35,7 +35,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
     path: `/page/category`,
     component: require.resolve('./src/templates/page-category.js'),
     context: {
-      products: res.slice(0, 500),
+      products: dummyData.slice(0, 500),
     },
   });
 

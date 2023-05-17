@@ -1,6 +1,7 @@
 import * as contentstack from "contentstack"
 import * as Utils from "@contentstack/utils"
 import ContentstackLivePreview from "@contentstack/live-preview-utils"
+import { HEADER_UID } from "./constants"
 
 const Stack = contentstack.Stack({
     api_key: `${process.env.CONTENTSTACK_API_KEY}`,
@@ -32,6 +33,6 @@ const Stack = contentstack.Stack({
 
   export default {
     getEntry({contentTypeUid}) {
-        return Stack.ContentType(contentTypeUid).Entry('bltfe7db99d54b0c956')
+        return Stack.ContentType(contentTypeUid).Entry(HEADER_UID)
     },
   }
