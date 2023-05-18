@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import React from 'react';
+import { Link} from 'gatsby';
 import HeaderNav from '../Header.Nav';
 import styled from 'styled-components';
-import { onEntryChange } from '../../live-preview-sdk';
-import { getHeaderRes } from '../../helper';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -21,32 +19,14 @@ const StyledLink = styled(Link)`
   align-self: center;
 `;
 
-const Header = () => {
-  const staticData = useStaticQuery(graphql`
-    query {
-      contentstackHeader {
-        logo {
-          url
-        }
-      }
-    }
-  `);
-
-  const  getHeaderData = async () => {
-    const headerData = await getHeaderRes();
-  }
-
-
-  React.useEffect(() => {
-      onEntryChange(getHeaderData, {skipInitialRender: true});
-  }, []);
+const Header = ({headerStaticData}) => {
 
   return (
     <StyledHeader>
       <StyledLink to='/'>
-        <img src={staticData.contentstackHeader.logo.url} alt='logo'></img>
+        <img src={headerStaticData.contentstackHeader.logo.url} alt='logo'></img>
       </StyledLink>
-      <HeaderNav />
+      <HeaderNav headerStaticData={headerStaticData}/>
     </StyledHeader>
   );
 };
